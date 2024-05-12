@@ -41,4 +41,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    //we have do define attributes that are not in the table as a primary key with that particular name (instructor_id vs id in user table)
+    //if it was user_id we don't need to define it
+    public function scheduledClasses(){
+        return $this->hasMany(ScheduledClass::class, 'instructor_id');
+    }
 }
