@@ -48,4 +48,9 @@ class User extends Authenticatable
     public function scheduledClasses(){
         return $this->hasMany(ScheduledClass::class, 'instructor_id');
     }
+
+    //define many to many relationship. we have to define the intermediate table name as second parameter
+    public function bookings(){
+        return $this->belongsToMany(ScheduledClass::class, 'bookings');
+    }
 }
