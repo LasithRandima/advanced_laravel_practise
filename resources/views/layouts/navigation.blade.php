@@ -78,6 +78,8 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+
+            {{-- Accessing gates in blades we can use @can and in the controllers Gate::allows method --}}
             @can('schedule-class')
             <x-responsive-nav-link :href="route('schedule.create')" :active="request()->routeIs('schedule.create')">
                 Schedule a Class

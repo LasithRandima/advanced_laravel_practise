@@ -17,6 +17,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+
+        // You can register policies here. But If you follow the rules of Laravel standard naming convension, you don't need to register policies here.
     ];
 
     /**
