@@ -8,14 +8,23 @@ use Illuminate\Http\Request;
 class BookingController extends Controller
 {
     public function create() {
-        $scheduledClasses = ScheduledClass::where('date_time', '>', now())
-            ->with('classType', 'instructor') // eager loading relationships
-            // In members relationship current logged member classes doesn't show because of this
-            // Querying Relationship Absence
-            ->whereDoesntHave('members', function ($query) {
-                $query->where('user_id', auth()->id());
-            })
-            ->oldest()->get();
+        // $scheduledClasses = ScheduledClass::where('date_time', '>', now())
+        //     ->with('classType', 'instructor') // eager loading relationships
+        //     // In members relationship current logged member classes doesn't show because of this. all other exclude classes will show
+        //     // Querying Relationship Absence
+        //     ->whereDoesntHave('members', function ($query) {
+        //         $query->where('user_id', auth()->id());
+        //     })
+        //     ->oldest()->get();
+
+
+        // using query scopes - upcoming
+        $scheduledClasses = ScheduledClass::upcoming()
+        ->with('classType', 'instructor') // eager loading relationships
+        // In members relationship current logged member classes doesn't show because of this. all other exclude classes will show
+        // Querying Relationship Absence
+        ->notBooked()
+        ->oldest('date_time')->get();
         return view('member.book')->with('scheduledClasses', $scheduledClasses);
     }
 
@@ -27,7 +36,10 @@ class BookingController extends Controller
     }
 
     public function index() {
-        $bookings = auth()->user()->bookings()->where('date_time', '>', now())->get();
+        // $bookings = auth()->user()->bookings()->where('date_time', '>', now())->get();
+
+         // using query scopes - upcoming
+        $bookings = auth()->user()->bookings()->upcoming()->get();
 
         return view('member.upcoming')->with('bookings',$bookings);
     }
