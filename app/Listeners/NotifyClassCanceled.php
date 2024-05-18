@@ -47,8 +47,7 @@ class NotifyClassCanceled
         // });
 
         //instead of sending mail to each member directly, we can send notification
-
-        Notification::send($members, new ClassCanceledNotification($details));
+        // Notification::send($members, new ClassCanceledNotification($details));
 
         // we should use jobs to send notifications to multiple users because they are time-consuming. we have to send notification as background process
         NotifyClassCanceledjob::dispatch($members, $details);
