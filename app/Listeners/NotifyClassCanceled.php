@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\ClassCanceled;
+use App\Jobs\NotifyClassCanceledjob;
 use App\Mail\ClassCanceledMail;
 use App\Notifications\ClassCanceledNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -48,5 +49,8 @@ class NotifyClassCanceled
         //instead of sending mail to each member directly, we can send notification
 
         Notification::send($members, new ClassCanceledNotification($details));
+
+        // we should use jobs to send notifications to multiple users because they are time-consuming. we have to send notification as background process
+        NotifyClassCanceledjob::dispatch($members, $details);
     }
 }
