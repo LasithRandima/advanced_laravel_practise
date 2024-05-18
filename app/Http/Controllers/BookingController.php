@@ -30,6 +30,7 @@ class BookingController extends Controller
 
     public function store(Request $request) {
         // attaching relationship (works only for many-to-many relationships)
+        //The attach method is primarily used in many-to-many relationships to add records to the pivot table that connects two models.
         auth()->user()->bookings()->attach($request->scheduled_class_id);
 
         return redirect()->route('booking.index');
@@ -46,6 +47,7 @@ class BookingController extends Controller
 
     public function destroy(int $id) {
         //detaching relationship (works only for many-to-many relationships)
+        // the detach method allows we to remove records from a many-to-many relationship's pivot table
         auth()->user()->bookings()->detach($id); // remove the booking  from the bookings table
 
         return redirect()->route('booking.index');

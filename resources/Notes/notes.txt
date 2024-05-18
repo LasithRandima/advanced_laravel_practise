@@ -1,0 +1,91 @@
+//tinker commands
+
+F:\dev\advanced_laravel_practise>php artisan tinker
+Psy Shell v0.12.3 (PHP 8.2.11 — cli) by Justin Hileman
+> $id = ScheduledClass::latest()->first()->id;
+[!] Aliasing 'ScheduledClass' to 'App\Models\ScheduledClass' for this Tinker session.
+= 13
+
+> $members = User::where('role', 'member')->take(3)->get();
+[!] Aliasing 'User' to 'App\Models\User' for this Tinker session.
+= Illuminate\Database\Eloquent\Collection {#6126
+    all: [
+      App\Models\User {#6124
+        id: 2,
+        name: "lasith",
+        email: "lasith@example.com",
+        email_verified_at: "2024-05-14 17:08:43",
+        #password: "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi",
+        #remember_token: "71kDagEqoZ",
+        created_at: "2024-05-14 17:08:43",
+        updated_at: "2024-05-14 17:08:43",
+        role: "member",
+      },
+      App\Models\User {#6195
+        id: 3,
+        name: "sara",
+        email: "sara@example.com",
+        email_verified_at: "2024-05-14 17:08:43",
+        #password: "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi",
+        #remember_token: "DBn1dmTEik",
+        created_at: "2024-05-14 17:08:43",
+        updated_at: "2024-05-14 17:08:43",
+        role: "member",
+      },
+      App\Models\User {#6181
+        id: 6,
+        name: "Magnolia O'Conner",
+        email: "tspencer@example.net",
+        email_verified_at: "2024-05-14 17:08:43",
+        #password: "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi",
+        #remember_token: "Nbd23V4bFw",
+        created_at: "2024-05-14 17:08:43",
+        updated_at: "2024-05-14 17:08:43",
+        role: "member",
+      },
+    ],
+  }
+
+
+
+> $members->each(function($member){ $member->bookings()->attach(12);})
+= Illuminate\Database\Eloquent\Collection {#6126
+    all: [
+      App\Models\User {#6124
+        id: 2,
+        name: "lasith",
+        email: "lasith@example.com",
+        email_verified_at: "2024-05-14 17:08:43",
+        #password: "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi",
+        #remember_token: "71kDagEqoZ",
+        created_at: "2024-05-14 17:08:43",
+        updated_at: "2024-05-14 17:08:43",
+        role: "member",
+      },
+      App\Models\User {#6195
+        id: 3,
+        name: "sara",
+        email: "sara@example.com",
+        email_verified_at: "2024-05-14 17:08:43",
+        #password: "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi",
+        #remember_token: "DBn1dmTEik",
+        created_at: "2024-05-14 17:08:43",
+        updated_at: "2024-05-14 17:08:43",
+        role: "member",
+      },
+      App\Models\User {#6181
+        id: 6,
+        name: "Magnolia O'Conner",
+        email: "tspencer@example.net",
+        email_verified_at: "2024-05-14 17:08:43",
+        #password: "$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi",
+        #remember_token: "Nbd23V4bFw",
+        created_at: "2024-05-14 17:08:43",
+        updated_at: "2024-05-14 17:08:43",
+        role: "member",
+      },
+    ],
+  }
+
+
+>exit
