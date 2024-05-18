@@ -12,7 +12,8 @@ class IncrementDate extends Command
      *
      * @var string
      */
-    protected $signature = 'app:increment-date';
+    // protected $signature = 'app:increment-date';
+    protected $signature = 'app:increment-date {--days=1}'; // default value of days is 1. If user doesn't specify the value, it will increment by 1 day
 
     /**
      * The console command description.
@@ -30,10 +31,11 @@ class IncrementDate extends Command
 
         $scheduledClasses->each(function ($class) {
             $class->update([
-                'date_time' => $class->date_time->addDay(1)
+                // 'date_time' => $class->date_time->addDay(1)
+                'date_time' => $class->date_time->addDay($this->option('days')) // Increment by the number of days user specified in the option through console
             ]);
         });
 
-        $this->info('All scheduled classes date has been incremented by one day');
+        $this->info("All scheduled classes date has been incremented by {$this->option('days')} days");
     }
 }
