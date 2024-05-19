@@ -95,8 +95,8 @@ class ScheduledClassController extends Controller
 
         ClassCanceled::dispatch($schedule); // dispatching the event
 
-        // $schedule->members()->detach(); // remove all members from the class schedule using  many to many relationships detach method
-        // $schedule->delete(); //first we have to detach all members from the class and then delete all members
+        $schedule->members()->detach(); // remove all members from the class schedule using  many to many relationships detach method
+        $schedule->delete(); //first we have to detach all members from the class and then delete all members
 
 
         return redirect()->route('schedule.index');

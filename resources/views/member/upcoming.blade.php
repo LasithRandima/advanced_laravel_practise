@@ -21,6 +21,8 @@
                            <p class="text-sm">{{ $class->date_time->format('jS M') }}</p>
                         </div>
                      </div>
+
+
                      <div class="mt-1 text-right">
                         <form method="post" action="{{ route('booking.destroy', $class->id) }}">
                            @csrf
@@ -28,6 +30,8 @@
                            <x-danger-button class="px-3 py-1" onclick="return confirm('Are you sure you want to cancel this class?')">Cancel</x-danger-button>
                         </form>
                      </div>
+                 
+
                   </div>
                   @empty
                   <div>
