@@ -22,6 +22,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', function () {
+    return view('welcome');
+});
+
 Route::get('/dashboard', DashboardController::class)->middleware(['auth'])->name('dashboard');
 
 Route::resource('instructor/schedule', ScheduledClassController::class)
